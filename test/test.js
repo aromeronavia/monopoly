@@ -1,8 +1,10 @@
 import Property, {
+  AlreadyHasHotel,
+  AlreadyInMortgage,
+  CannotDemolishHouseWithHotel,
+  IsNotMortgaged,
   TooManyHouses,
   TooFewHouses,
-  AlreadyHasHotel,
-  CannotDemolishHouseWithHotel
 } from '../monopoly/property';
 
 describe('Property', () => {
@@ -13,7 +15,8 @@ describe('Property', () => {
     priceWithTwoHouses: 45,
     priceWithThreeHouses: 100,
     priceWithFourHouses: 200,
-    priceWithHotel: 300
+    priceWithHotel: 300,
+    inMortgage: false
   });
 
   const buildEngland = attributes => new Property(Object.assign({
@@ -23,7 +26,8 @@ describe('Property', () => {
     priceWithTwoHouses: 45,
     priceWithThreeHouses: 100,
     priceWithFourHouses: 200,
-    priceWithHotel: 300
+    priceWithHotel: 300,
+    inMortgage: false
   }, attributes));
 
   it('should create a property with no houses and no hotels', () => {
@@ -175,5 +179,16 @@ describe('Property', () => {
   it('should be able to unmortgage', () => {
     const england = buildEngland();
     england.unmortgage();
+  });
+
+  it('should not mortgage when property is already mortgaged', () => {
+    const england = buildEngland();
+    england.mortgage();
+    expect(() => england.mortgage()).to.throw(AlreadyInMortgage);
+  });
+
+  it('should not unmortgage the property if its not in mortgage', () => {
+    const england = buildEngland();
+    expect(() => england.unmortage()).to.throw(IsNotMortgaged);
   });
 });

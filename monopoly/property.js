@@ -1,13 +1,16 @@
+class AlreadyHasHotel extends Error {}
+class AlreadyInMortgage extends Error {}
+class CannotDemolishHouseWithHotel extends Error {}
+class IsNotMortgaged extends Error {}
 class TooManyHouses extends Error {}
 class TooFewHouses extends Error {}
-class AlreadyHasHotel extends Error {}
-class CannotDemolishHouseWithHotel extends Error {}
 
 export {
+  AlreadyHasHotel,
+  AlreadyInMortgage,
   CannotDemolishHouseWithHotel,
   TooManyHouses,
   TooFewHouses,
-  AlreadyHasHotel
 };
 
 export default class Property {
@@ -22,7 +25,7 @@ export default class Property {
 
     this.houses = 0;
     this.withHotel = false;
-    this.inMortage = false;
+    this.inMortgage = false;
   }
 
   getNumberOfHouses() {
@@ -101,10 +104,14 @@ export default class Property {
   }
 
   mortgage() {
-    this.inMortage = true;
+    if (this.inMortgage) {
+      throw new AlreadyInMortgage();
+    }
+
+    this.inMortgage = true;
   }
 
   unmortgage() {
-    this.inMortage = false;
+    this.inMortgage = false;
   }
 }

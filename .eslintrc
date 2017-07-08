@@ -1,0 +1,12 @@
+{
+    "extends": "airbnb",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "globals": {
+        "expect": true,
+        "describe": true,
+        "it": true
+    }
+}

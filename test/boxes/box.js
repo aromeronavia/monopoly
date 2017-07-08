@@ -1,4 +1,4 @@
-import Box from '../monopoly/boxes/box';
+import Box from '../../monopoly/boxes/box';
 
 describe('Box', () => {
   const buildPropertyBox = attributes => new Box(Object.assign({

@@ -1,4 +1,4 @@
-import Dice from '../monopoly/dices/dice';
+import Dice from '../../monopoly/dices/dice';
 
 describe('Dice', () => {
   const buildDice = () => new Dice();

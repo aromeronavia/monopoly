@@ -1,4 +1,4 @@
-import TreasureCard from '../monopoly/cards/treasure';
+import TreasureCard from '../../monopoly/cards/treasure';
 
 describe('Treasure card', () => {
   it('should have an effect on the game', () => {

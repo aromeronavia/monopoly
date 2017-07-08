@@ -5,7 +5,7 @@ import Property, {
   IsNotMortgaged,
   TooManyHouses,
   TooFewHouses,
-} from '../monopoly/boxes/property';
+} from '../../monopoly/boxes/property';
 
 describe('Property', () => {
   const buildFrance = () => new Property({

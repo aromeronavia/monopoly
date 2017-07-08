@@ -30,6 +30,22 @@ describe('Property', () => {
     inMortgage: false
   }, attributes));
 
+  const buildEnglandWithHouses = (numberOfHouses, attributes) => {
+    const england = buildEngland(attributes);
+    for (let i = 0; i < numberOfHouses; i++) {
+      england.buildHouse();
+    }
+
+    return england;
+  };
+
+  const buildEnglandWithHotel = attributes => {
+    const england = buildEnglandWithHouses(4, attributes);
+    england.buildHotel();
+
+    return england;
+  }
+
   it('should create a property with no houses and no hotels', () => {
     const france = buildFrance();
     expect(france.getNumberOfHouses()).to.equals(0);
@@ -59,11 +75,7 @@ describe('Property', () => {
   });
 
   it('should not build more than four houses', () => {
-    const england = buildEngland();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
+    const england = buildEnglandWithHouses(4);
     expect(() => england.buildHouse()).to.throw(TooManyHouses);
   });
 
@@ -90,38 +102,23 @@ describe('Property', () => {
   });
 
   it('should build hotel with four houses', () => {
-    const england = buildEngland();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHotel();
+    const england = buildEnglandWithHotel();
     expect(england.hasHotel()).to.be.true;
   });
 
   it('should not build more than one hotel', () => {
-    const england = buildEngland();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHotel();
+    const england = buildEnglandWithHotel();
     expect(() => england.buildHotel()).to.throw(AlreadyHasHotel);
   });
 
   it('should return the price of a property with hotel', () => {
-    const england = buildEngland({
+    const england = buildEnglandWithHotel({
       priceWithOneHouse: 40,
       priceWithTwoHouses: 45,
       priceWithThreeHouses: 1000,
       priceWithFourHouses: 5000,
       priceWithHotel: 10000
     });
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHotel();
     expect(england.getPrice()).to.equal(10000);
   });
 
@@ -138,33 +135,18 @@ describe('Property', () => {
   });
 
   it('should not demolish a house if has hotel', () => {
-    const england = buildEngland();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHotel();
+    const england = buildEnglandWithHotel();
     expect(() => england.demolishHouse()).to.throw(CannotDemolishHouseWithHotel);
   });
 
   it('should demolish hotel', () => {
-    const england = buildEngland();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHotel();
+    const england = buildEnglandWithHotel();
     england.demolishHotel();
     expect(england.hasHotel()).to.be.false;
   });
 
   it('should demolish hotel and a house after', () => {
-    const england = buildEngland();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHouse();
-    england.buildHotel();
+    const england = buildEnglandWithHotel();
     england.demolishHotel();
     england.demolishHouse();
     expect(england.hasHotel()).to.be.false;

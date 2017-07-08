@@ -21,7 +21,8 @@
     "mocha": "^3.4.2"
   },
   "scripts": {
-    "test": "mocha --compilers js:babel-core/register --watch --recursive"
+    "test": "mocha --compilers js:babel-core/register --recursive",
+    "tdd": "mocha --compilers js:babel-core/register --watch --recursive"
   },
   "author": "",
   "license": "ISC"

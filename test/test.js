@@ -156,11 +156,13 @@ describe('Property', () => {
   it('should be able to acquire mortgage', () => {
     const england = buildEngland();
     england.mortgage();
+    expect(england.isInMortgage()).to.be.true;
   });
 
   it('should be able to unmortgage', () => {
     const england = buildEngland();
     england.unmortgage();
+    expect(england.isInMortgage()).to.be.false;
   });
 
   it('should not mortgage when property is already mortgaged', () => {

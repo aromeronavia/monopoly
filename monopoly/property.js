@@ -28,8 +28,16 @@ export default class Property {
     this.inMortgage = false;
   }
 
+  getName() {
+    return this.name;
+  }
+
   getNumberOfHouses() {
     return this.houses;
+  }
+
+  hasHouses() {
+    return this.getNumberOfHouses() > 0;
   }
 
   hasHotel() {
@@ -59,10 +67,6 @@ export default class Property {
     }
   }
 
-  getName() {
-    return this.name;
-  }
-
   buildHouse() {
     if (this.getNumberOfHouses() >= 4) {
       throw new TooManyHouses();
@@ -83,9 +87,6 @@ export default class Property {
     this.withHotel = true;
   }
 
-  hasHouses() {
-    return this.getNumberOfHouses() > 0;
-  }
 
   demolishHouse() {
     if (this.hasHotel()) {
@@ -113,5 +114,9 @@ export default class Property {
 
   unmortgage() {
     this.inMortgage = false;
+  }
+
+  isInMortgage() {
+    return this.inMortgage;
   }
 }

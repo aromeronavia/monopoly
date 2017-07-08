@@ -8,5 +8,10 @@
         "expect": true,
         "describe": true,
         "it": true
+    },
+    "rules": {
+        "comma-dangle": "off",
+        "arrow-parens": ["error", "as-needed"],
+        "no-unused-expressions": "off"
     }
 }

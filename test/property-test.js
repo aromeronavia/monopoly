@@ -32,7 +32,7 @@ describe('Property', () => {
 
   const buildEnglandWithHouses = (numberOfHouses, attributes) => {
     const england = buildEngland(attributes);
-    for (let i = 0; i < numberOfHouses; i++) {
+    for (let i = 0; i < numberOfHouses; i += 1) {
       england.buildHouse();
     }
 
@@ -44,7 +44,7 @@ describe('Property', () => {
     england.buildHotel();
 
     return england;
-  }
+  };
 
   it('should create a property with no houses and no hotels', () => {
     const france = buildFrance();

@@ -1,7 +1,6 @@
 class AlreadyHasHotel extends Error {}
 class AlreadyInMortgage extends Error {}
 class CannotDemolishHouseWithHotel extends Error {}
-class IsNotMortgaged extends Error {}
 class TooManyHouses extends Error {}
 class TooFewHouses extends Error {}
 
@@ -53,7 +52,7 @@ export default class Property {
       return this.priceWithHotel;
     }
 
-    switch(this.getNumberOfHouses()) {
+    switch (this.getNumberOfHouses()) {
       case 1:
         return this.priceWithOneHouse;
       case 2:

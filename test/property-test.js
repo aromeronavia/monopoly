@@ -86,14 +86,16 @@ describe('Property', () => {
       priceWithThreeHouses: 1000,
       priceWithFourHouses: 5000,
     });
-    england.buildHouse();
-    expect(england.getPrice()).to.equal(40);
-    england.buildHouse();
-    expect(england.getPrice()).to.equal(45);
-    england.buildHouse();
-    expect(england.getPrice()).to.equal(1000);
-    england.buildHouse();
-    expect(england.getPrice()).to.equal(5000);
+
+    const expectPriceWithNewHouse = price => {
+      england.buildHouse();
+      expect(england.getPrice()).to.equal(price);
+    };
+
+    expectPriceWithNewHouse(40);
+    expectPriceWithNewHouse(45);
+    expectPriceWithNewHouse(1000);
+    expectPriceWithNewHouse(5000);
   });
 
   it('should not create an hotel if we dont have four houses', () => {

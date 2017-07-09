@@ -11,9 +11,15 @@ describe('Board', () => {
 
   it('should add a player to the board at the initial position', () => {
     const board = buildBoard();
+
     board.addPlayer(new Player());
-    const boardPlayers = board.getPlayers();
+    let boardPlayers = board.getPlayers();
     expect(boardPlayers).to.have.lengthOf(1);
     expect(boardPlayers[0].getSlot().getPosition()).to.equals(0);
+
+    board.addPlayer(new Player());
+    boardPlayers = board.getPlayers();
+    expect(boardPlayers).to.have.lengthOf(2);
+    expect(boardPlayers[1].getSlot().getPosition()).to.equals(0);
   });
 });

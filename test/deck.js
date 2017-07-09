@@ -19,4 +19,13 @@ describe('Deck', () => {
     expect(card).to.be.equals(5);
     expect(deck.getCards()).to.have.lengthOf(4);
   });
+
+  it('should reshuffle the cards once they have run out', () => {
+    deck = buildDeck([1, 2]);
+    deck.drawCard();
+    deck.drawCard();
+    expect(deck.getCards()).to.have.lengthOf(2);
+    deck.drawCard();
+    expect(deck.getCards()).to.have.lengthOf(1);
+  });
 });

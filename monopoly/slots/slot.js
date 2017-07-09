@@ -1,4 +1,4 @@
-export default class Box {
+export default class Slot {
   constructor(attributes) {
     this.type = attributes.type;
     this.previous = attributes.previous;

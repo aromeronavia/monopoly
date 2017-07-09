@@ -7,6 +7,8 @@ import Property, {
   TooFewHouses,
 } from '../monopoly/property';
 
+import Player from '../monopoly/player';
+
 describe('Property', () => {
   const buildFrance = () => new Property({
     name: 'France',
@@ -176,5 +178,17 @@ describe('Property', () => {
   it('should not unmortgage the property if its not in mortgage', () => {
     const england = buildEngland();
     expect(() => england.unmortage()).to.throw(IsNotMortgaged);
+  });
+
+  it('should not have an owner when created', () => {
+    const england = buildEngland();
+    expect(england.getOwner()).to.not.exist;
+  });
+
+  it('should be able to set an owner to a property', () => {
+    const england = buildEngland();
+    const player = new Player();
+    england.setOwner(player);
+    expect(england.getOwner()).to.equals(player);
   });
 });

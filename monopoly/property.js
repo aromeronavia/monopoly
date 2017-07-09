@@ -21,6 +21,7 @@ export default class Property {
     this.priceWithThreeHouses = attributes.priceWithThreeHouses;
     this.priceWithFourHouses = attributes.priceWithFourHouses;
     this.priceWithHotel = attributes.priceWithHotel;
+    this.owner = attributes.owner;
 
     this.houses = 0;
     this.withHotel = false;
@@ -29,6 +30,14 @@ export default class Property {
 
   getName() {
     return this.name;
+  }
+
+  getOwner() {
+    return this.owner;
+  }
+
+  setOwner(owner) {
+    this.owner = owner;
   }
 
   getNumberOfHouses() {
@@ -85,7 +94,6 @@ export default class Property {
 
     this.withHotel = true;
   }
-
 
   demolishHouse() {
     if (this.hasHotel()) {

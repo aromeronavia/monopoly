@@ -2,7 +2,9 @@ import Slot from '../../monopoly/slots/slot';
 
 describe('Slot', () => {
   const buildPropertySlot = attributes => new Slot(Object.assign({
+    name: 'name',
     type: 'property',
+    position: 0,
     previous: null,
     next: null
   }, attributes));
@@ -10,6 +12,16 @@ describe('Slot', () => {
   it('should have a type', () => {
     const slot = buildPropertySlot();
     expect(slot.getType()).to.be.equals('property');
+  });
+
+  it('should have a name', () => {
+    const slot = buildPropertySlot();
+    expect(slot.getName()).to.be.equals('name');
+  });
+
+  it('should have a position', () => {
+    const slot = buildPropertySlot();
+    expect(slot.getPosition()).to.be.equals(0);
   });
 
   it('should have a neighbour slot at the left', () => {

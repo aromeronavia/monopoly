@@ -9,7 +9,7 @@ export default class Monopoly {
     const players = [];
 
     for (let i = 0; i < numberOfPlayers; i += 1) {
-      players.push(new Player(i));
+      players.push(new Player());
     }
 
     return players;
@@ -31,5 +31,9 @@ export default class Monopoly {
 
   getPlayers() {
     return this.players;
+  }
+
+  addPlayer() {
+    this.players.push(new Player());
   }
 }

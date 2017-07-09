@@ -1,12 +1,13 @@
-import Deck from './deck';
-
-export default class TreasureDeck extends Deck {
+export default class Deck {
   constructor(cards) {
-    super();
     this.cards = cards;
   }
 
   getCards() {
     return this.cards;
+  }
+
+  drawCard() {
+    return this.cards.pop();
   }
 }

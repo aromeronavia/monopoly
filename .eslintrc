@@ -7,7 +7,10 @@
     "globals": {
         "expect": true,
         "describe": true,
-        "it": true
+        "it": true,
+        "beforeEach": true,
+        "afterEach": true,
+        "context": true
     },
     "rules": {
         "comma-dangle": "off",

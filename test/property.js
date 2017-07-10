@@ -12,23 +12,25 @@ import Player from '../monopoly/player';
 describe('Property', () => {
   const buildFrance = () => new Property({
     name: 'France',
-    price: 10,
-    priceWithOneHouse: 40,
-    priceWithTwoHouses: 45,
-    priceWithThreeHouses: 100,
-    priceWithFourHouses: 200,
-    priceWithHotel: 300,
+    cost: 10,
+    rent: 20,
+    rentWithOneHouse: 40,
+    rentWithTwoHouses: 45,
+    rentWithThreeHouses: 100,
+    rentWithFourHouses: 200,
+    rentWithHotel: 300,
     inMortgage: false
   });
 
   const buildEngland = attributes => new Property(Object.assign({
     name: 'England',
-    price: 20,
-    priceWithOneHouse: 40,
-    priceWithTwoHouses: 45,
-    priceWithThreeHouses: 100,
-    priceWithFourHouses: 200,
-    priceWithHotel: 300,
+    cost: 20,
+    rent: 30,
+    rentWithOneHouse: 40,
+    rentWithTwoHouses: 45,
+    rentWithThreeHouses: 100,
+    rentWithFourHouses: 200,
+    rentWithHotel: 300,
     inMortgage: false
   }, attributes));
 
@@ -54,11 +56,11 @@ describe('Property', () => {
     expect(france.hasHotel()).to.be.false;
   });
 
-  it('should have the initial price', () => {
+  it('should have the cost', () => {
     const france = buildFrance();
     const england = buildEngland();
-    expect(france.getPrice()).to.equals(10);
-    expect(england.getPrice()).to.equals(20);
+    expect(france.getCost()).to.equals(10);
+    expect(england.getCost()).to.equals(20);
   });
 
   it('should have a name', () => {
@@ -66,6 +68,13 @@ describe('Property', () => {
     const england = buildEngland();
     expect(france.getName()).to.equals('France');
     expect(england.getName()).to.equals('England');
+  });
+
+  it('should have the initial rent', () => {
+    const france = buildFrance();
+    const england = buildEngland();
+    expect(france.getRent()).to.equals(20);
+    expect(england.getRent()).to.equals(30);
   });
 
   it('should build a house and return the number of houses', () => {
@@ -83,21 +92,21 @@ describe('Property', () => {
 
   it('should return the price of a property with houses', () => {
     const england = buildEngland({
-      priceWithOneHouse: 40,
-      priceWithTwoHouses: 45,
-      priceWithThreeHouses: 1000,
-      priceWithFourHouses: 5000,
+      rentWithOneHouse: 40,
+      rentWithTwoHouses: 45,
+      rentWithThreeHouses: 1000,
+      rentWithFourHouses: 5000,
     });
 
-    const expectPriceWithNewHouse = price => {
+    const expectRentWithNewHouse = rent => {
       england.buildHouse();
-      expect(england.getPrice()).to.equal(price);
+      expect(england.getRent()).to.equal(rent);
     };
 
-    expectPriceWithNewHouse(40);
-    expectPriceWithNewHouse(45);
-    expectPriceWithNewHouse(1000);
-    expectPriceWithNewHouse(5000);
+    expectRentWithNewHouse(40);
+    expectRentWithNewHouse(45);
+    expectRentWithNewHouse(1000);
+    expectRentWithNewHouse(5000);
   });
 
   it('should not create an hotel if we dont have four houses', () => {
@@ -117,13 +126,13 @@ describe('Property', () => {
 
   it('should return the price of a property with hotel', () => {
     const england = buildEnglandWithHotel({
-      priceWithOneHouse: 40,
-      priceWithTwoHouses: 45,
-      priceWithThreeHouses: 1000,
-      priceWithFourHouses: 5000,
-      priceWithHotel: 10000
+      rentWithOneHouse: 40,
+      rentWithTwoHouses: 45,
+      rentWithThreeHouses: 1000,
+      rentWithFourHouses: 5000,
+      rentWithHotel: 10000
     });
-    expect(england.getPrice()).to.equal(10000);
+    expect(england.getRent()).to.equal(10000);
   });
 
   it('should not demolish a house if property has no houses', () => {

@@ -15,12 +15,13 @@ export {
 export default class Property {
   constructor(attributes) {
     this.name = attributes.name;
-    this.price = attributes.price;
-    this.priceWithOneHouse = attributes.priceWithOneHouse;
-    this.priceWithTwoHouses = attributes.priceWithTwoHouses;
-    this.priceWithThreeHouses = attributes.priceWithThreeHouses;
-    this.priceWithFourHouses = attributes.priceWithFourHouses;
-    this.priceWithHotel = attributes.priceWithHotel;
+    this.cost = attributes.cost;
+    this.rent = attributes.rent;
+    this.rentWithOneHouse = attributes.rentWithOneHouse;
+    this.rentWithTwoHouses = attributes.rentWithTwoHouses;
+    this.rentWithThreeHouses = attributes.rentWithThreeHouses;
+    this.rentWithFourHouses = attributes.rentWithFourHouses;
+    this.rentWithHotel = attributes.rentWithHotel;
     this.owner = attributes.owner;
 
     this.houses = 0;
@@ -30,6 +31,10 @@ export default class Property {
 
   getName() {
     return this.name;
+  }
+
+  getCost() {
+    return this.cost;
   }
 
   getOwner() {
@@ -56,22 +61,22 @@ export default class Property {
     return !this.hasHotel();
   }
 
-  getPrice() {
+  getRent() {
     if (this.hasHotel()) {
-      return this.priceWithHotel;
+      return this.rentWithHotel;
     }
 
     switch (this.getNumberOfHouses()) {
       case 1:
-        return this.priceWithOneHouse;
+        return this.rentWithOneHouse;
       case 2:
-        return this.priceWithTwoHouses;
+        return this.rentWithTwoHouses;
       case 3:
-        return this.priceWithThreeHouses;
+        return this.rentWithThreeHouses;
       case 4:
-        return this.priceWithFourHouses;
+        return this.rentWithFourHouses;
       default:
-        return this.price;
+        return this.rent;
     }
   }
 

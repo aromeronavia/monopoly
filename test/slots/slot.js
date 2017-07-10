@@ -39,4 +39,18 @@ describe('Slot', () => {
     });
     expect(slot.getNext()).to.equals(nextSlot);
   });
+
+  it('should set a neighbor at the right', () => {
+    const nextSlot = buildPropertySlot();
+    const slot = buildPropertySlot();
+    slot.setNext(nextSlot);
+    expect(slot.getNext()).to.equals(nextSlot);
+  });
+
+  it('should set a neighbor at the left', () => {
+    const previousSlot = buildPropertySlot();
+    const slot = buildPropertySlot();
+    slot.setPrevious(previousSlot);
+    expect(slot.getPrevious()).to.equals(previousSlot);
+  });
 });

@@ -22,4 +22,19 @@ describe('Board', () => {
     expect(boardPlayers).to.have.lengthOf(2);
     expect(boardPlayers[1].getSlot().getPosition()).to.equals(0);
   });
+
+  it('should link the slots in the game', () => {
+    const board = buildBoard();
+    const slots = board.getSlots();
+
+    expect(slots[0].getPrevious()).to.equals(slots[3]);
+    expect(slots[1].getPrevious()).to.equals(slots[0]);
+    expect(slots[2].getPrevious()).to.equals(slots[1]);
+    expect(slots[3].getPrevious()).to.equals(slots[2]);
+
+    expect(slots[0].getNext()).to.equals(slots[1]);
+    expect(slots[1].getNext()).to.equals(slots[2]);
+    expect(slots[2].getNext()).to.equals(slots[3]);
+    expect(slots[3].getNext()).to.equals(slots[0]);
+  });
 });

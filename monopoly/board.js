@@ -1,5 +1,7 @@
 import Slot from './slots/slot';
 
+const SLOTS_LENGTH = 4;
+
 class BoardPlayer {
   constructor(player) {
     this.player = player;
@@ -17,16 +19,26 @@ class BoardPlayer {
 
 export default class Board {
   constructor(slotConfig) {
-    this.slots = this.buildSlots(slotConfig);
+    this.slots = this.buildDoubleLinkedSlots(slotConfig);
     this.players = [];
   }
 
-  buildSlots() {
+  buildDoubleLinkedSlots() {
     const slots = [];
 
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < SLOTS_LENGTH; i += 1) {
       slots.push(new Slot({ position: i }));
     }
+
+    for (let i = 0; i < SLOTS_LENGTH; i += 1) {
+      slots[i].setNext(slots[(i + 1) % SLOTS_LENGTH]);
+    }
+
+    for (let i = 1; i < SLOTS_LENGTH; i += 1) {
+      slots[i].setPrevious(slots[i - 1]);
+    }
+
+    slots[0].setPrevious(slots[SLOTS_LENGTH - 1]);
 
     return slots;
   }

@@ -26,4 +26,12 @@ export default class Slot {
   getPrevious() {
     return this.previous;
   }
+
+  setNext(next) {
+    this.next = next;
+  }
+
+  setPrevious(previous) {
+    this.previous = previous;
+  }
 }

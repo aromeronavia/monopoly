@@ -24,6 +24,6 @@
     "test": "mocha --compilers js:babel-core/register --recursive",
     "tdd": "mocha --compilers js:babel-core/register --watch --recursive"
   },
-  "author": "",
+  "author": "Alberto Romero",
   "license": "ISC"
 }
